@@ -13,7 +13,7 @@ const CopyChildren: React.FC<ClipboardCopyProps> = ({
   children,
   className,
 }) => {
-  const [copied, setCopied] = useState<Boolean>(false);
+  const [copied, setCopied] = useState<boolean>(false);
   // Function to handle the copy operation
   const handleCopy = () => {
     setCopied(true);

@@ -56,6 +56,7 @@ const AccountsPage = () => {
                 <div className="flex flex-col gap-sm flex-grow overflow-y-auto">
                   {telegramAccounts?.map((account, index) => (
                     <CustomDrawer
+                      key={index}
                       id="1"
                       header={{ colored: "аккаунта", neutral: "Данные" }}
                       trigger={

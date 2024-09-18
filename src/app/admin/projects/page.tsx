@@ -10,7 +10,6 @@ import { ProductTable } from "./ProductTable";
 import AdminHeader, { BreadcrumbItem } from "@/widget/admin/AdminHeader";
 import { Button } from "@/shared/ui/button";
 import { PlusCircle } from "lucide-react";
-import CreateReportForm from "@/widget/create-report-form/CreateReportForm";
 import CustomDrawer from "@/shared/ui/custom/Drawer";
 import CreateProjectForm from "@/widget/admin/CreateProjectForm";
 

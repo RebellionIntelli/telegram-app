@@ -9,6 +9,7 @@ interface Props {
 }
 
 export default function AccountForm({ onSuccessfulSubmit, data }: Props) {
+  console.log(onSuccessfulSubmit);
   return (
     <div className="flex flex-col gap-lg">
       <Block className="bg-secondary">

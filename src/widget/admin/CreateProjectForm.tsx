@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Form,
   FormControl,
@@ -14,14 +14,12 @@ import {
 } from "@/shared/ui/form";
 import { Input } from "@/shared/ui/input";
 import { Button } from "@/shared/ui/button";
-import { UUID } from "crypto";
 import { useProjectController } from "@/entity/project/project.controller";
 
 import useUserStore from "@/entity/user/user.store";
 import { imagesApi } from "@/shared/api/images.api";
 import getFileWord from "@/shared/lib/get-file-word";
 import LoadingSpinner from "@/shared/ui/custom/LoadingSpinner";
-import { InputSkeletons } from "./Skeletons";
 
 interface Props {
   onSuccessfulSubmit: () => void;
