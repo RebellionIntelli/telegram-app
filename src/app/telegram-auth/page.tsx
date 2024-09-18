@@ -10,7 +10,7 @@ import ErrorScreen, {
 import { AxiosError } from "axios";
 import { UUID } from "crypto";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 
 const TelegramAuthPage = () => {
   const params = useSearchParams();
@@ -25,7 +25,7 @@ const TelegramAuthPage = () => {
   useEffect(() => {
     if (User) {
       setUserState(User);
-      router.push("/"); // Редирект на главную страницу
+      router.push("/reports"); // Редирект на главную страницу
     }
   }, [User, setUserState, router]);
 
@@ -50,4 +50,10 @@ const TelegramAuthPage = () => {
   return null;
 };
 
-export default TelegramAuthPage;
+const SuspendedTelegramAuthPage = () => (
+  <Suspense fallback={<LoadingSpinner />}>
+    <TelegramAuthPage />
+  </Suspense>
+);
+
+export default SuspendedTelegramAuthPage;
