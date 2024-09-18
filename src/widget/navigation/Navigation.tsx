@@ -1,5 +1,5 @@
 import { cn } from "@/shared/lib/utils";
-import { File, Home, User2 } from "lucide-react";
+import { File, User2 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 

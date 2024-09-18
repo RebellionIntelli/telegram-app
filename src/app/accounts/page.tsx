@@ -7,20 +7,12 @@ import ErrorScreen, {
 import { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import React from "react";
-import {
-  LastReportSkeleton,
-  AllTimeReportsSkeleton,
-} from "../reports/Skeletons";
 import { Button } from "@/shared/ui/button";
 import CustomDrawer from "@/shared/ui/custom/Drawer";
-import CreateWLReportForm from "@/widget/create-wl-report-form/CreateWLReportForm";
-import CreateReportForm from "@/widget/create-report-form/CreateReportForm";
 import { useAccountController } from "@/entity/account/account.controller";
-import SectionLabel from "@/shared/ui/custom/SectionLabel";
 import Block from "@/shared/ui/containers/Block";
 import { AccountSkeleton } from "./Skeletons";
-import Image from "next/image";
-import { Avatar, AvatarFallback, AvatarImage } from "@/shared/ui/avatar";
+import { Avatar, AvatarFallback } from "@/shared/ui/avatar";
 import AccountForm from "@/widget/account-form/AccountForm";
 import Navigation from "@/widget/navigation/Navigation";
 import Profile from "@/widget/Profile/Profile";
