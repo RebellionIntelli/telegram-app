@@ -13,6 +13,12 @@ export const useReportController = (id?: string) => {
     enabled: !!id,
   });
 
+  const ReportUserQuery = useQuery({
+    queryKey: ["Reports", id],
+    queryFn: () => ReportService.getReportById(id as UUID),
+    enabled: !!id,
+  });
+
   const ReportsQuery = useQuery({
     queryKey: ["Reports"],
     queryFn: ReportService.getReports,
@@ -49,10 +55,15 @@ export const useReportController = (id?: string) => {
   return {
     Report: ReportQuery.data,
     Reports: ReportsQuery.data,
-    isReportLoading: ReportsQuery.isLoading || ReportQuery.isLoading,
-    ReportError: ReportsQuery.error || ReportQuery.error,
+    isReportLoading:
+      ReportsQuery.isLoading ||
+      ReportQuery.isLoading ||
+      ReportUserQuery.isLoading,
+    ReportError:
+      ReportsQuery.error || ReportQuery.error || ReportUserQuery.error,
     createReport: createReportMutation.mutate,
     updateReport: updateReportMutation.mutate,
     deleteReport: deleteReportMutation.mutate,
+    telegramReports: ReportUserQuery.data,
   };
 };

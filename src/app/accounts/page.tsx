@@ -16,26 +16,30 @@ import { Avatar, AvatarFallback } from "@/shared/ui/avatar";
 import AccountForm from "@/widget/account-form/AccountForm";
 import Navigation from "@/widget/navigation/Navigation";
 import Profile from "@/widget/Profile/Profile";
+import useUserStore from "@/entity/user/user.store";
 
-const ReportsPage = () => {
-  const { accounts, accountError, isAccountLoading } = useAccountController();
+const AccountsPage = () => {
+  const { userState } = useUserStore();
+  const { telegramAccounts, accountError, isAccountLoading } =
+    useAccountController(userState?.id);
 
   const router = useRouter();
 
-  if (accountError)
+  if (accountError) {
     return (
       <ErrorScreen
         error={accountError as AxiosError<CustomErrorResponse>}
         action={router.refresh}
       />
     );
-
+  }
+  console.log(telegramAccounts);
   return (
     <Screen className="flex flex-col justify-between h-full max-h-screen">
       <Profile />
       <section className="flex flex-col gap-lg justify-center items-center flex-grow w-full overflow-auto">
         <Heading>Аккаунты</Heading>
-        {isAccountLoading && !accounts ? (
+        {isAccountLoading && !telegramAccounts ? (
           <section className="flex flex-col gap-xs w-full overflow-hidden h-screen">
             <div className="flex flex-col gap-sm flex-grow overflow-y-auto">
               <AccountSkeleton />
@@ -45,12 +49,12 @@ const ReportsPage = () => {
           </section>
         ) : (
           <>
-            {accounts && accounts.length < 0 ? (
-              <>Akkauti</>
+            {telegramAccounts && telegramAccounts.length < 0 ? (
+              <>Нет аккаунтов</>
             ) : (
               <section className="flex flex-col gap-xs w-full overflow-hidden h-screen">
                 <div className="flex flex-col gap-sm flex-grow overflow-y-auto">
-                  {accounts?.map((account, index) => (
+                  {telegramAccounts?.map((account, index) => (
                     <CustomDrawer
                       id="1"
                       header={{ colored: "аккаунта", neutral: "Данные" }}
@@ -107,4 +111,4 @@ const ReportsPage = () => {
   );
 };
 
-export default ReportsPage;
+export default AccountsPage;

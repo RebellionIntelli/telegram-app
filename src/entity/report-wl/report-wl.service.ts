@@ -11,7 +11,7 @@ class ReportWLService {
 
   static async getReportWLById(id: UUID): Promise<ReportWhitelistEntity> {
     const response = await baseApi.get<ReportWhitelistEntity>(
-      `/reports-wl/${id}`
+      `/reports-wl/user/${id}`
     );
     return response.data;
   }

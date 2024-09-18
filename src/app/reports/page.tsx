@@ -19,11 +19,16 @@ import { useReportWLController } from "@/entity/report-wl/report-wl.controller";
 import { CombinedReportEntity } from "@/entity/report/report.interface";
 import Navigation from "@/widget/navigation/Navigation";
 import Profile from "@/widget/Profile/Profile";
+import useUserStore from "@/entity/user/user.store";
 
 const ReportsPage = () => {
-  const { Reports, ReportError, isReportLoading } = useReportController();
-  const { ReportWLs, ReportWLError, isReportWLLoading } =
-    useReportWLController();
+  const { userState } = useUserStore();
+  const { Reports, ReportError, isReportLoading } = useReportController(
+    userState?.id
+  );
+  const { ReportWLs, ReportWLError, isReportWLLoading } = useReportWLController(
+    userState?.id
+  );
 
   const router = useRouter();
   // Combine reports and reportWLs

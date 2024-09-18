@@ -12,6 +12,12 @@ export const useAccountController = (id?: string) => {
     enabled: !!id,
   });
 
+  const AccountUserQuery = useQuery({
+    queryKey: ["accounts", id],
+    queryFn: () => AccountService.getAccountsByUserId(id as UUID),
+    enabled: !!id,
+  });
+
   const AccountsQuery = useQuery({
     queryKey: ["accounts"],
     queryFn: AccountService.getAccounts,
@@ -48,8 +54,13 @@ export const useAccountController = (id?: string) => {
   return {
     account: AccountQuery.data,
     accounts: AccountsQuery.data,
-    isAccountLoading: AccountsQuery.isLoading || AccountQuery.isLoading,
-    accountError: AccountsQuery.error || AccountQuery.error,
+    telegramAccounts: AccountUserQuery.data,
+    isAccountLoading:
+      AccountsQuery.isLoading ||
+      AccountQuery.isLoading ||
+      AccountUserQuery.isLoading,
+    accountError:
+      AccountsQuery.error || AccountQuery.error || AccountUserQuery.error,
     createAccount: createAccountMutation.mutate,
     updateAccount: updateAccountMutation.mutate,
     deleteAccount: deleteAccountMutation.mutate,

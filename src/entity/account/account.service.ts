@@ -14,6 +14,10 @@ class AccountService {
     const response = await baseApi.get<AccountEntity>(`/accounts/${id}`);
     return response.data;
   }
+  static async getAccountsByUserId(id: UUID): Promise<AccountEntity[]> {
+    const response = await baseApi.get<AccountEntity[]>(`/accounts/user/${id}`);
+    return response.data;
+  }
 
   static async createAccount(data: CreateAccountDto): Promise<CreateAccountRo> {
     const response = await baseApi.post<CreateAccountRo>("/accounts", data);
