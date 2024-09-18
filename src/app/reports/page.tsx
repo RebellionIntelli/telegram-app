@@ -48,14 +48,6 @@ const ReportsPage = () => {
     }
   }
 
-  if (ReportError)
-    return (
-      <ErrorScreen
-        error={ReportError as AxiosError<CustomErrorResponse>}
-        action={router.refresh}
-      />
-    );
-
   return (
     <Screen className="flex flex-col justify-between h-full max-h-screen">
       <Profile />

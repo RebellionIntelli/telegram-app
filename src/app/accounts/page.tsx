@@ -25,14 +25,6 @@ const AccountsPage = () => {
 
   const router = useRouter();
 
-  if (accountError) {
-    return (
-      <ErrorScreen
-        error={accountError as AxiosError<CustomErrorResponse>}
-        action={router.refresh}
-      />
-    );
-  }
   console.log(telegramAccounts);
   return (
     <Screen className="flex flex-col justify-between h-full max-h-screen">
